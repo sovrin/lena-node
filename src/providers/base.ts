@@ -23,6 +23,11 @@ export abstract class BaseDictionaryProvider {
     abstract supports(languagePair: LanguagePair): boolean;
     abstract buildUrl(languagePair: LanguagePair, query: string): string;
     abstract parseHtml(html: string): DictionarySection[];
+    abstract readonly typeMap: Record<string, string>;
+
+    protected mapType(rawType: string): string {
+        return this.typeMap[rawType] ?? rawType;
+    }
 
     protected async fetchHtml(
         url: string,

@@ -23,6 +23,11 @@ const LANG_CODES: Partial<
     'en-de': ['en', 'de'],
     'de-fr': ['de', 'fr'],
     'fr-de': ['fr', 'de'],
+
+const TYPE_MAP: Record<string, string> = {
+    Verbs: 'verb',
+    Nouns: 'noun',
+    Others: 'other',
 };
 
 function normalizeType(raw: string): string {
@@ -96,6 +101,7 @@ function extractTerm(
 export class DictCcProvider extends BaseDictionaryProvider {
     public readonly name = 'dictcc';
     public readonly languagePairs = Object.keys(DICTCC_BASES) as LanguagePair[];
+    public readonly typeMap: Record<string, string> = TYPE_MAP;
 
     supports(languagePair: LanguagePair): boolean {
         return languagePair in DICTCC_BASES;
@@ -111,14 +117,15 @@ export class DictCcProvider extends BaseDictionaryProvider {
         const audio = parseAudioMeta(html, this.languagePairs[0]);
 
         const sectionMap = new Map<string, DictionaryEntry[]>();
-        let currentType = 'Other';
+        let currentType = 'other';
 
         $('tr').each((_, row) => {
             const $row = $(row);
 
             const $header = $row.find("td.td6[colspan='4']");
             if ($header.length) {
-                currentType = normalizeType(normalizeText($header.text()));
+                const rawType = normalizeType(normalizeText($header.text()));
+                currentType = this.mapType(rawType);
                 return;
             }
 

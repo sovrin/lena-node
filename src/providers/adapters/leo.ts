@@ -16,6 +16,13 @@ const LANGUAGE_PATHS: Partial<Record<LanguagePair, string>> = {
     'en-de': 'english-german',
     'de-fr': 'german-french',
     'fr-de': 'french-german',
+
+const TYPE_MAP: Record<string, string> = {
+    subst: 'noun',
+    verb: 'verb',
+    adjadv: 'adjective',
+    definition: 'definition',
+    phrase: 'phrase',
 };
 
 function extractTerm(
@@ -49,6 +56,7 @@ export class LeoProvider extends BaseDictionaryProvider {
     public readonly languagePairs = Object.keys(
         LANGUAGE_PATHS,
     ) as LanguagePair[];
+    public readonly typeMap: Record<string, string> = TYPE_MAP;
 
     supports(languagePair: LanguagePair): boolean {
         return languagePair in LANGUAGE_PATHS;
@@ -64,8 +72,10 @@ export class LeoProvider extends BaseDictionaryProvider {
 
         $('div[data-dz-name]').each((i, sectionEl) => {
             const $section = $(sectionEl);
-            const type = $section.attr('data-dz-name');
-            if (!type) return;
+            const rawType = $section.attr('data-dz-name');
+            if (!rawType) return;
+
+            const type = this.mapType(rawType);
 
             const entries: DictionaryEntry[] = [];
 
