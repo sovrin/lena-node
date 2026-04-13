@@ -1,7 +1,6 @@
 import type { DictionaryProvider } from './index';
 
-import { DictCcProvider } from './dictcc';
-import { LeoProvider } from './leo';
+import { LeoProvider, DictCcProvider } from './adapters';
 
 export type ProviderName = 'leo' | 'dictcc';
 

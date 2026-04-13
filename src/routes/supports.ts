@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
-import { DictCcProvider } from '../providers/dictcc';
-import { LeoProvider } from '../providers/leo';
+import { DictCcProvider, LeoProvider } from '../providers/adapters';
 
 const router = Router();
 

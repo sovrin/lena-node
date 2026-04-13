@@ -1,12 +1,15 @@
-import type { LanguagePair, LookupOptions, LookupResult } from '../types';
+export {
+    BaseDictionaryProvider,
+    DEFAULT_USER_AGENT,
+    normalizeText,
+    toAbsoluteUrl,
+    withTimeout,
+} from './base';
 
-export type DictionaryProvider = {
-    readonly name: string;
-    readonly languagePairs: readonly LanguagePair[];
-    supports(languagePair: LanguagePair): boolean;
-    lookup(
-        query: string,
-        languagePair: LanguagePair,
-        options?: LookupOptions,
-    ): Promise<LookupResult>;
-};
+export type {
+    DictionaryEntry,
+    DictionarySection,
+    DictionaryTerm,
+} from './base';
+
+export type { DictionaryProvider } from './interface';
