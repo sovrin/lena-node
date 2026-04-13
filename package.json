@@ -1,0 +1,25 @@
+{
+    "name": "lena-node",
+    "version": "1.0.0",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsx src/server.ts",
+        "format": "oxfmt",
+        "lint": "oxlint",
+        "lint:fix": "oxlint --fix"
+    },
+    "dependencies": {
+        "cheerio": "^1.2.0",
+        "express": "^5",
+        "tsx": "^4",
+        "typescript": "^6"
+    },
+    "devDependencies": {
+        "@types/express": "^5",
+        "@types/node": "^25",
+        "oxfmt": "^0.45",
+        "oxlint": "^1.60"
+    }
+}
