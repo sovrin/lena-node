@@ -12,10 +12,10 @@ import { BaseDictionaryProvider, toAbsoluteUrl } from '../base';
 const LEO_BASE = 'https://dict.leo.org';
 
 const LANGUAGE_PATHS: Partial<Record<LanguagePair, string>> = {
-    'de-en': 'german-english',
-    'en-de': 'english-german',
-    'de-fr': 'german-french',
-    'fr-de': 'french-german',
+    'de-en': 'english-german',
+    'en-de': 'german-english',
+    'de-fr': 'french-german',
+    'fr-de': 'german-french',
 }
 
 const TYPE_MAP: Record<string, string> = {

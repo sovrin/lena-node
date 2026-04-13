@@ -14,7 +14,7 @@ const translate = async (
     to: string,
 ) => {
     const provider = createProvider(providerName);
-    const pair = `${to}-${from}` as LanguagePair;
+    const pair = `${from}-${to}` as LanguagePair;
 
     return await provider.lookup(query, pair);
 };
