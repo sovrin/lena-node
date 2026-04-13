@@ -16,6 +16,7 @@ const LANGUAGE_PATHS: Partial<Record<LanguagePair, string>> = {
     'en-de': 'english-german',
     'de-fr': 'german-french',
     'fr-de': 'french-german',
+}
 
 const TYPE_MAP: Record<string, string> = {
     subst: 'noun',

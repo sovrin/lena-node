@@ -23,6 +23,7 @@ const LANG_CODES: Partial<
     'en-de': ['en', 'de'],
     'de-fr': ['de', 'fr'],
     'fr-de': ['fr', 'de'],
+}
 
 const TYPE_MAP: Record<string, string> = {
     Verbs: 'verb',
